@@ -21,21 +21,21 @@ public class SimpleHUD {
 		dismiss();
 		setDialog(context, msg, R.drawable.simplehud_error, TYPE_BLOCK);
 		dialog.show();
-		dismissAfter1s();
+		dismissAfter2s();
 	}
 
 	public static void showSuccessMessage(Context context, String msg) {
 		dismiss();
 		setDialog(context, msg, R.drawable.simplehud_success, TYPE_BLOCK);
 		dialog.show();
-		dismissAfter1s();
+		dismissAfter2s();
 	}
 	
 	public static void showInfoMessage(Context context, String msg) {
 		dismiss();
 		setDialog(context, msg, R.drawable.simplehud_info, TYPE_BLOCK);
 		dialog.show();
-		dismissAfter1s();
+		dismissAfter2s();
 	}
 	
 
@@ -62,7 +62,7 @@ public class SimpleHUD {
 	 * 计时关闭对话框
 	 * 
 	 */
-	private static void dismissAfter1s() {
+	private static void dismissAfter2s() {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
