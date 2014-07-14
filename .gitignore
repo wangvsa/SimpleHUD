@@ -1,2 +1,4 @@
-bin/
-gen/
+SimpleHUD/bin/
+SimpleHUD/gen/
+SimpleHUDDemo/bin/
+SimpleHUDDemo/gen/
