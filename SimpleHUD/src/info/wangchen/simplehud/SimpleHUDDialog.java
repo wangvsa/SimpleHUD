@@ -8,7 +8,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class SimpleHUDDialog extends Dialog {
+class SimpleHUDDialog extends Dialog {
 
 	public SimpleHUDDialog(Context context, int theme) {
 		super(context, theme);

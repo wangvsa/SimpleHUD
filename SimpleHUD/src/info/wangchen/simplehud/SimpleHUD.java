@@ -3,6 +3,7 @@ package info.wangchen.simplehud;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import info.wangchen.simplehud.R;
 
 public class SimpleHUD {
 	
@@ -41,8 +42,8 @@ public class SimpleHUD {
 
 	
 	private static void setDialog(Context ctx, String msg, int resId, int blocktype) {
-		if(dialog==null)
-			dialog = SimpleHUDDialog.createDialog(ctx);
+		//if(dialog==null)
+		dialog = SimpleHUDDialog.createDialog(ctx);
 		dialog.setMessage(msg);
 		dialog.setImage(ctx, resId);
 
@@ -51,8 +52,9 @@ public class SimpleHUD {
 	}
 
 	public static void dismiss() {
-		if(dialog!=null && dialog.isShowing())
+		if(dialog!=null && dialog.isShowing()) {
 			dialog.dismiss();
+		}
 	}
 
 
