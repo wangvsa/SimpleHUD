@@ -49,6 +49,8 @@ public class SimpleHUD {
 
 		if(blocktype==TYPE_BLOCK)
 			dialog.setCanceledOnTouchOutside(false);
+		else
+			dialog.setCanceledOnTouchOutside(true);
 	}
 
 	public static void dismiss() {
