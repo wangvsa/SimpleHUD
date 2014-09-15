@@ -13,33 +13,47 @@ public class SimpleHUD {
 	public static void showLoadingMessage(Context context, String msg, boolean cancelable) {
 		dismiss();
 		setDialog(context, msg, R.drawable.simplehud_spinner, cancelable);
-		dialog.show();
+		if(dialog!=null) dialog.show();
 	}
 	
 	public static void showErrorMessage(Context context, String msg) {
 		dismiss();
 		setDialog(context, msg, R.drawable.simplehud_error, true);
-		dialog.show();
-		dismissAfter2s();
+		if(dialog!=null) {
+			dialog.show();
+			dismissAfter2s();
+		}
 	}
 
 	public static void showSuccessMessage(Context context, String msg) {
 		dismiss();
 		setDialog(context, msg, R.drawable.simplehud_success, true);
-		dialog.show();
-		dismissAfter2s();
+		if(dialog!=null) {
+			dialog.show();
+			dismissAfter2s();
+		}
 	}
 	
 	public static void showInfoMessage(Context context, String msg) {
 		dismiss();
 		setDialog(context, msg, R.drawable.simplehud_info, true);
-		dialog.show();
-		dismissAfter2s();
+		if(dialog!=null) {
+			dialog.show();
+			dismissAfter2s();
+		}
 	}
 	
 
 	
 	private static void setDialog(Context ctx, String msg, int resId, boolean cancelable) {
+		// 判断是否ctx不存在了
+		if(ctx==null)
+			return;
+		if(ctx instanceof Activity) {
+			Activity act = (Activity)ctx;
+			if(act.isDestroyed())
+				return;
+		}
 		dialog = SimpleHUDDialog.createDialog(ctx);
 		dialog.setMessage(msg);
 		dialog.setImage(ctx, resId);
