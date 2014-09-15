@@ -21,10 +21,10 @@ If there's an existing HUD, it will be dismissed and show the new one.
 ### Showing the loading dialog
 
 ```java
-SimpleHUD.showLoadingMessage(this, "loading data, please wait...", SimpleHUD.TYPE_BLOCK);
+SimpleHUD.showLoadingMessage(this, "loading data, please wait...", true);
 ```
 
-Note the third parameter, if you set it to TYPE_NONBLOCK then the users can touch outside to cancel the HUD.
+Note the third parameter `boolean cancelable`, if you set it to `true` then you can tap the back button to cancel the HUD.
 
 When your operation is completed, call `dismiss()` method to dismiss it.
 ```java

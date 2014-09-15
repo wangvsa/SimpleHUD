@@ -28,7 +28,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch( v.getId() ) {
 			case R.id.btn_loading_message:
-				SimpleHUD.showLoadingMessage(this, "loading data, please wait...", SimpleHUD.TYPE_BLOCK);
+				SimpleHUD.showLoadingMessage(this, "loading data, please wait...", true);
 				// when you finish loading your data, call SimpleHUD.dismiss();
 				break;
 			case R.id.btn_info_message:
