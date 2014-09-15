@@ -1,4 +1,7 @@
+.gradle/
 SimpleHUD/bin/
 SimpleHUD/gen/
+SimpleHUD/gradle/
 SimpleHUDDemo/bin/
 SimpleHUDDemo/gen/
+SimpleHUDDemo/gradle/

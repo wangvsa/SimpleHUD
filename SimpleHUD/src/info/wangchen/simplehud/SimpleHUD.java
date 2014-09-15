@@ -1,52 +1,53 @@
 package info.wangchen.simplehud;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
 public class SimpleHUD {
 	
 	private static SimpleHUDDialog dialog;
-	private static Activity activity;		
+	private static Context context;		
 	
 	public static final int TYPE_BLOCK = 0;
 	public static final int TYPE_NONBLOCK = 1;
 
-	public static void showLoadingMessage(Activity activity, String msg, int blocktype) {
+	public static void showLoadingMessage(Context context, String msg, int blocktype) {
 		dismiss();
-		setDialog(activity, msg, R.drawable.simplehud_spinner, TYPE_BLOCK);
+		setDialog(context, msg, R.drawable.simplehud_spinner, TYPE_BLOCK);
 		dialog.show();
 	}
 	
-	public static void showErrorMessage(Activity activity, String msg) {
+	public static void showErrorMessage(Context context, String msg) {
 		dismiss();
-		setDialog(activity, msg, R.drawable.simplehud_error, TYPE_BLOCK);
+		setDialog(context, msg, R.drawable.simplehud_error, TYPE_BLOCK);
 		dialog.show();
 		dismissAfter2s();
 	}
 
-	public static void showSuccessMessage(Activity activity, String msg) {
+	public static void showSuccessMessage(Context context, String msg) {
 		dismiss();
-		setDialog(activity, msg, R.drawable.simplehud_success, TYPE_BLOCK);
+		setDialog(context, msg, R.drawable.simplehud_success, TYPE_BLOCK);
 		dialog.show();
 		dismissAfter2s();
 	}
 	
-	public static void showInfoMessage(Activity activity, String msg) {
+	public static void showInfoMessage(Context context, String msg) {
 		dismiss();
-		setDialog(activity, msg, R.drawable.simplehud_info, TYPE_BLOCK);
+		setDialog(context, msg, R.drawable.simplehud_info, TYPE_BLOCK);
 		dialog.show();
 		dismissAfter2s();
 	}
 	
 
 	
-	private static void setDialog(Activity act, String msg, int resId, int blocktype) {
-		dialog = SimpleHUDDialog.createDialog(activity);
+	private static void setDialog(Context ctx, String msg, int resId, int blocktype) {
+		dialog = SimpleHUDDialog.createDialog(ctx);
 		dialog.setMessage(msg);
-		dialog.setImage(activity, resId);
+		dialog.setImage(ctx, resId);
 		
-		activity = act;
+		context = ctx;
 
 		if(blocktype==TYPE_BLOCK)
 			dialog.setCanceledOnTouchOutside(false);
@@ -55,9 +56,12 @@ public class SimpleHUD {
 	}
 
 	public static void dismiss() {
-		// 如果被绑定的activity已经结束了调用dismiss会出错
-		if(activity==null || activity.isDestroyed()) {
-			return;
+		if(context instanceof Activity) {
+			Activity act = (Activity)context;
+			// 如果被绑定的activity已经结束了调用dismiss会出错
+			if(act==null || act.isDestroyed()) {
+				return;
+			}
 		}
 		if(dialog!=null && dialog.isShowing())
 			dialog.dismiss();
