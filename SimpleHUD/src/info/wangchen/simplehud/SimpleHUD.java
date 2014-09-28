@@ -46,14 +46,9 @@ public class SimpleHUD {
 
 	
 	private static void setDialog(Context ctx, String msg, int resId, boolean cancelable) {
-		// 判断是否ctx不存在了
-		if(ctx==null)
+		if(!isContextValid())
 			return;
-		if(ctx instanceof Activity) {
-			Activity act = (Activity)ctx;
-			if(act.isDestroyed())
-				return;
-		}
+		
 		dialog = SimpleHUDDialog.createDialog(ctx);
 		dialog.setMessage(msg);
 		dialog.setImage(ctx, resId);
@@ -65,15 +60,9 @@ public class SimpleHUD {
 	}
 
 	public static void dismiss() {
-		if(context instanceof Activity) {
-			Activity act = (Activity)context;
-			// 如果被绑定的activity已经结束了调用dismiss会出错
-			if(act==null || act.isDestroyed()) {
-				return;
-			}
-		}
-		if(dialog!=null && dialog.isShowing())
+		if(isContextValid() && dialog!=null && dialog.isShowing())
 			dialog.dismiss();
+		dialog = null;
 	}
 
 
@@ -102,5 +91,22 @@ public class SimpleHUD {
 				dismiss();
 		};
 	};
+	
+
+	/**
+	 * 判断parent view是否还存在
+	 * 若不存在不能调用dismis，或setDialog等方法
+	 * @return
+	 */
+	private static boolean isContextValid() {
+		if(context==null)
+			return false;
+		if(context instanceof Activity) {
+			Activity act = (Activity)context;
+			if(act.isFinishing())
+				return false;
+		}
+		return true;
+	}
 
 }
