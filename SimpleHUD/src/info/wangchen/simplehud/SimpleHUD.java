@@ -14,6 +14,7 @@ public class SimpleHUD {
 		dismiss();
 		setDialog(context, msg, R.drawable.simplehud_spinner, cancelable);
 		if(dialog!=null) dialog.show();
+
 	}
 	
 	public static void showErrorMessage(Context context, String msg) {
@@ -46,6 +47,8 @@ public class SimpleHUD {
 
 	
 	private static void setDialog(Context ctx, String msg, int resId, boolean cancelable) {
+		context = ctx;
+
 		if(!isContextValid())
 			return;
 		
@@ -55,7 +58,6 @@ public class SimpleHUD {
 		dialog.setCanceledOnTouchOutside(false);
 		dialog.setCancelable(cancelable);		// back键是否可dimiss对话框
 		
-		context = ctx;
 
 	}
 
