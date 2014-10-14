@@ -57,8 +57,6 @@ public class SimpleHUD {
 		dialog.setImage(ctx, resId);
 		dialog.setCanceledOnTouchOutside(false);
 		dialog.setCancelable(cancelable);		// back键是否可dimiss对话框
-		
-
 	}
 
 	public static void dismiss() {

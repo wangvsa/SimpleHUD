@@ -36,5 +36,6 @@ class SimpleHUDDialog extends Dialog {
 			image.startAnimation(anim);
 		}
 	}
+	
 
 }

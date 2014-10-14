@@ -38,7 +38,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				SimpleHUD.showErrorMessage(this, "This ia a error message.");
 				break;
 			case R.id.btn_success_message:
-				SimpleHUD.showSuccessMessage(this, "This a success message.");
+				SimpleHUD.showSuccessMessage(this, "This a success message, and it's a long sentence!");
 				break;
 		}
 	}
