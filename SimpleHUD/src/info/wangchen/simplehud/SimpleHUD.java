@@ -9,12 +9,17 @@ public class SimpleHUD {
 	
 	private static SimpleHUDDialog dialog;
 	private static Context context;		
+
+	public static int dismissDelay = SimpleHUD.DISMISS_DELAY_SHORT;
+	public static final int DISMISS_DELAY_SHORT = 2000;
+	public static final int DISMISS_DELAY_MIDIUM = 4000;
+	public static final int DISMISS_DELAY_LONG = 6000;
+
 	
 	public static void showLoadingMessage(Context context, String msg, boolean cancelable) {
 		dismiss();
 		setDialog(context, msg, R.drawable.simplehud_spinner, cancelable);
 		if(dialog!=null) dialog.show();
-
 	}
 	
 	public static void showErrorMessage(Context context, String msg) {
@@ -22,7 +27,7 @@ public class SimpleHUD {
 		setDialog(context, msg, R.drawable.simplehud_error, true);
 		if(dialog!=null) {
 			dialog.show();
-			dismissAfter2s();
+			dismissAfterSeconds();
 		}
 	}
 
@@ -31,7 +36,7 @@ public class SimpleHUD {
 		setDialog(context, msg, R.drawable.simplehud_success, true);
 		if(dialog!=null) {
 			dialog.show();
-			dismissAfter2s();
+			dismissAfterSeconds();
 		}
 	}
 	
@@ -40,7 +45,7 @@ public class SimpleHUD {
 		setDialog(context, msg, R.drawable.simplehud_info, true);
 		if(dialog!=null) {
 			dialog.show();
-			dismissAfter2s();
+			dismissAfterSeconds();
 		}
 	}
 	
@@ -70,12 +75,12 @@ public class SimpleHUD {
 	 * 计时关闭对话框
 	 * 
 	 */
-	private static void dismissAfter2s() {
+	private static void dismissAfterSeconds() {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					Thread.sleep(2000);
+					Thread.sleep(dismissDelay);
 					handler.sendEmptyMessage(0);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
