@@ -34,7 +34,7 @@ SimpleHUD.dismiss();
 ### Showing the message dialog
 
 The next three HUD are the same except the icon.
-It will dismiss itself after two seconds so no need to to invoke `dimiss()` explicitly.
+It will dismiss itself so no need to to invoke `dimiss()` explicitly.
 
 ```java
 SimpleHUD.showInfoMessage(this, "This is a info message.");
@@ -43,6 +43,22 @@ SimpleHUD.showSuccessMessage(this, "This ia a success message.");
 ```
 
 ## Customization
+
+### Change the display time
+
+Set the variable `dismissDelay` to one of the three constants.
+```java
+SimpleHUD.dismissDelay = SimpleHUD.DISMISS_DELAY_SHORT;     // 2s
+SimpleHUD.dismissDelay = SimpleHUD.DISMISS_DELAY_MIDIUM;    // 4s
+SimpleHUD.dismissDelay = SimpleHUD.DISMISS_DELAY_LONG;      // 6s
+```
+
+Or a arbitrary value.
+```java
+SimpleHUD.dismissDelay = 8000;                              // 8s
+
+
+
 
 ### Change the icon
 
