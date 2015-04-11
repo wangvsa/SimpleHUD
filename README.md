@@ -56,9 +56,7 @@ SimpleHUD.dismissDelay = SimpleHUD.DISMISS_DELAY_LONG;      // 6s
 Or a arbitrary value.
 ```java
 SimpleHUD.dismissDelay = 8000;                              // 8s
-
-
-
+```
 
 ### Change the icon
 
