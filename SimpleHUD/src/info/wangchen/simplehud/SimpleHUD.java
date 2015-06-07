@@ -9,19 +9,31 @@ public class SimpleHUD {
 	
 	private static SimpleHUDDialog dialog;
 	private static Context context;		
+	private static SimpleHUDCallback callback;
 
 	public static int dismissDelay = SimpleHUD.DISMISS_DELAY_SHORT;
 	public static final int DISMISS_DELAY_SHORT = 2000;
 	public static final int DISMISS_DELAY_MIDIUM = 4000;
 	public static final int DISMISS_DELAY_LONG = 6000;
+	
+	
 
 	
+	public static void showLoadingMessage(Context context, String msg, boolean cancelable, SimpleHUDCallback callback) {
+		SimpleHUD.callback = callback;
+		showLoadingMessage(context, msg, cancelable);
+	}
 	public static void showLoadingMessage(Context context, String msg, boolean cancelable) {
 		dismiss();
 		setDialog(context, msg, R.drawable.simplehud_spinner, cancelable);
 		if(dialog!=null) dialog.show();
 	}
-	
+
+
+	public static void showErrorMessage(Context context, String msg, SimpleHUDCallback callback) {
+		SimpleHUD.callback = callback;
+		showErrorMessage(context, msg);
+	}
 	public static void showErrorMessage(Context context, String msg) {
 		dismiss();
 		setDialog(context, msg, R.drawable.simplehud_error, true);
@@ -31,6 +43,11 @@ public class SimpleHUD {
 		}
 	}
 
+
+	public static void showSuccessMessage(Context context, String msg, SimpleHUDCallback callback) {
+		SimpleHUD.callback = callback;
+		showSuccessMessage(context, msg);
+	}
 	public static void showSuccessMessage(Context context, String msg) {
 		dismiss();
 		setDialog(context, msg, R.drawable.simplehud_success, true);
@@ -40,6 +57,10 @@ public class SimpleHUD {
 		}
 	}
 	
+	public static void showInfoMessage(Context context, String msg, SimpleHUDCallback callback) {
+		SimpleHUD.callback = callback;
+		showInfoMessage(context, msg);
+	}
 	public static void showInfoMessage(Context context, String msg) {
 		dismiss();
 		setDialog(context, msg, R.drawable.simplehud_info, true);
@@ -48,6 +69,7 @@ public class SimpleHUD {
 			dismissAfterSeconds();
 		}
 	}
+	
 	
 
 	
@@ -92,8 +114,13 @@ public class SimpleHUD {
 
 	private static Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
-			if(msg.what==0)
+			if(msg.what==0) {
 				dismiss();
+				if(SimpleHUD.callback!=null) {
+					callback.onSimpleHUDDismissed();
+					callback = null;
+				}
+			}
 		};
 	};
 	
@@ -114,4 +141,8 @@ public class SimpleHUD {
 		return true;
 	}
 
+	
+	public static interface SimpleHUDCallback {
+		public void onSimpleHUDDismissed();
+	}
 }

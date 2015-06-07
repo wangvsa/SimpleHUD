@@ -18,10 +18,12 @@ public class MainActivity extends Activity implements OnClickListener {
 		Button showLoadingMessage = (Button)findViewById(R.id.btn_loading_message);
 		Button showErrorMessage = (Button)findViewById(R.id.btn_error_message);
 		Button showSuccessMessage = (Button)findViewById(R.id.btn_success_message);
+		Button showListDialog = (Button)findViewById(R.id.btn_list_dialog);
 		showInfoMessage.setOnClickListener(this);
 		showLoadingMessage.setOnClickListener(this);
 		showErrorMessage.setOnClickListener(this);
 		showSuccessMessage.setOnClickListener(this);
+		showListDialog.setOnClickListener(this);
 	}
 	
 	@Override
@@ -39,6 +41,14 @@ public class MainActivity extends Activity implements OnClickListener {
 				break;
 			case R.id.btn_success_message:
 				SimpleHUD.showSuccessMessage(this, "This a success message, and it's a long sentence!");
+				break;
+			case R.id.btn_list_dialog:
+				SimpleHUD.showListDialog(this, "列表框", new String[]{"item 1", "item 2", "item 3"}, new SimpleHUD.OnItemClickListener() {
+					@Override
+					public void onItemClick(String item) {
+						SimpleHUD.showInfoMessage(MainActivity.this, item);
+					}
+				});
 				break;
 		}
 	}

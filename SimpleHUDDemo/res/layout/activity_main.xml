@@ -37,4 +37,11 @@
         android:text="Show success message">
     </Button>
 
+    <Button
+        android:id="@+id/btn_list_dialog"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Show list dialog">
+    </Button>
+
 </LinearLayout>
