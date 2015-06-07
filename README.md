@@ -42,6 +42,24 @@ SimpleHUD.showErrorMessage(this, "This ia an error message.");
 SimpleHUD.showSuccessMessage(this, "This ia a success message.");
 ```
 
+### Invoke your method when the HUD dimisses
+
+Create an object of the  `SimpleHUDCallback` interface and implement its `onSimpleHUDDismissed` method.
+Then pass it to SimpleHUD as an argument. Here's an example:
+
+```java
+private SimpleHUDCallback simplehudCallback = new SimpleHUDCallback() {
+  @Override
+  public void onSimpleHUDDismissed() {
+    startHomeActivity();
+  }
+};
+SimpleHUD.showInfoMessage(this, "This is a info message.", simplehudCallback);
+// SimpleHUD.showErrorMessage(this, "This ia an error message.", simplehudCallback);
+// SimpleHUD.showSuccessMessage(this, "This ia a success message.", simplehudCallback);
+```
+
+
 ## Customization
 
 ### Change the display time
