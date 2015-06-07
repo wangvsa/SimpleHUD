@@ -51,7 +51,7 @@ Then pass it to SimpleHUD as an argument. Here's an example:
 private SimpleHUDCallback simplehudCallback = new SimpleHUDCallback() {
   @Override
   public void onSimpleHUDDismissed() {
-    startHomeActivity();
+    // your code goes here...
   }
 };
 SimpleHUD.showInfoMessage(this, "This is a info message.", simplehudCallback);
