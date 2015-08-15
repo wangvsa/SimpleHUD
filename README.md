@@ -7,9 +7,21 @@ SimpleHUD is an easy-to-use yet beautiful HUD for android.
 
 ## Installation
 
+### Android Studio
+
+Add the following line into the dependencies block.
+```bash
+compile group:'info.wangchen', name:'SimpleHUD', version:'1.0'
+```
+
+### Eclipse
 1. Clone or download SimpleHUD if you haven't yet.
 2. Import SimpleHUD project.
 3. Add SimpleHUD as a dependency to your existing project and you're good to go.
+
+
+
+
 
 ## Usage
 
